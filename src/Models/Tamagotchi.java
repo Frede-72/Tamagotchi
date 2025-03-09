@@ -45,44 +45,54 @@ public class Tamagotchi {
         hunger += 3;
         energy--;
         mood--;
+        if(hunger>10){
+            hunger = 10;
+        }
         System.out.println(name + " eats");
     }
 
     public void makeSound() {
-        System.out.println("Animal sounds");
+
     }
 
     public boolean checkLiveStatus() {
         if (hunger < 0) {
             die(name + " died due to a lack of food");
             return alive;
-        } else if (hunger < 1) {
-            System.out.println(name + " doesn't even remember the taste of food anymore");
-        } else if (hunger < 3) {
-            System.out.println(name + " is hungry");
         }
         if (energy < 0) {
-            die(name + " died due to a lack of sleep");
+            die(name + " finally got to sleep"
+                    + "\n" + "Forever");
             return alive;
-        } else if (energy < 1) {
-            System.out.println(name +" has started hallucinating"
-            +"\n" + "Perhaps sleeping this month would be a good idea");
-        } else if (energy < 3) {
-            System.out.println(name + " is low on energy and needs to sleep");
         }
         if (mood < 0) {
             die(name + " lost the will to live");
             return alive;
-        } else if (mood < 1) {
+        }
+        if (hunger < 1) {
+            System.out.println(name + " doesn't even remember the taste of food anymore");
+
+        } else if (hunger < 3) {
+            System.out.println(name + " is hungry");
+        }
+        if (mood < 1) {
             System.out.println(name + " wonders what the point of life really is" +
                     "\n" + "Is there nothing more to it than eating and sleeping?");
+
         } else if (mood < 3) {
             System.out.println(name + " would like to play");
+        }
+        if (energy < 1) {
+            System.out.println(name + " has started hallucinating"
+                    + "\n" + "Perhaps sleeping this month would be a good idea");
+
+        } else if (energy < 3) {
+            System.out.println(name + " is low on energy and needs to sleep");
         }
         return alive;
     }
 
-    public void die(String deathMessage) {
+    private void die(String deathMessage) {
         System.out.println(deathMessage);
         alive = false;
     }
